@@ -1,0 +1,67 @@
+type Usuario {
+    rut: ID!
+    dv: String!
+    nombre: String!
+    apellido: String!
+    email: String!
+    roles: [Rol]
+}
+
+input UsuarioInput {
+    rut: ID!
+    dv: String!
+    nombre: String!
+    apellido: String!
+    email: String!
+}
+
+type Rol {
+    id: ID!
+    nombre: String!
+    perfiles: [Perfil]
+}
+
+input RolInput {
+    id: ID!
+    nombre: String!
+}
+
+type Perfil {
+    id: ID!
+    nombre: String!
+}
+
+input PerfilInput {
+    id: ID!
+    nombre: String!
+}
+
+type Mutation {
+    #Usuario Mutation
+    crearUsuario(usuario: UsuarioInput): Usuario!
+    actualizarUsuario(rut: ID!, email: String!): Usuario!
+    eliminarUsuario(rut: ID!): Usuario!
+    addRol(rut: ID!, idRol: ID!): Usuario!
+    #Rol Mutation
+    crearRol(nombre: String!): Rol!
+    actualizarRol(rol: RolInput): Rol!
+    eliminarRol(id: ID!): Rol!
+    addPerfil(id: ID!, idPerfil: ID!): Rol!
+    #Perfil Mutation
+    crearPerfil(nombre: String!): Perfil!
+    actualizarPerfil(perfil: PerfilInput): Perfil!
+    eliminarPerfil(id: ID!): Perfil!
+}
+
+type Query{
+    #usuario(rut: ID!): Usuario!
+    #Usuario Query
+    obtenerUsuarios: [Usuario]!
+    obtenerUsuarioPorRut(rut: ID!): Usuario!
+    #Rol Query
+    obtenerRoles: [Rol]!
+    obtenerRolPorId(id: ID!): Rol!
+    #Perfil Query
+    obtenerPerfiles: [Perfil]!
+    obtenerPerfilPorId(id: ID!): Perfil!
+}

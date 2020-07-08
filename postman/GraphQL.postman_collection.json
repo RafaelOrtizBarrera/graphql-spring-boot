@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "be8a75d1-e8b8-462c-8127-7ef43707d3dc",
+		"name": "GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "query",
+			"item": [
+				{
+					"name": "usuario",
+					"item": [
+						{
+							"name": "obtener usuarios",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    obtenerUsuarios{\n        rut\n        dv\n        nombre\n        apellido\n        email\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtener usuario por rut",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query datosDeUsuarioPorRut($rut: ID!){\n    obtenerUsuarioPorRut(rut:$rut){\n        rut\n        dv\n        nombre\n        apellido\n        email\n        roles {\n            nombre\n            perfiles{\n                nombre\n            }\n        }\n    }\n}",
+										"variables": "{\n  \"rut\": 18825912\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "rol",
+					"item": [
+						{
+							"name": "obtener roles",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    obtenerRoles{\n        id\n        nombre\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtener rol por id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query obtenerRolPorId($id: ID!){\n    obtenerRolPorId(id:$id){\n        nombre\n    }\n}",
+										"variables": "{\n\t\"id\":1\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "perfil",
+					"item": [
+						{
+							"name": "obtener perfiles",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    obtenerPerfiles{\n        id\n        nombre\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtener perfil por id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query obtenerPerfilPorId($id: ID!){\n    obtenerPerfilPorId(id:$id){\n        nombre\n    }\n}",
+										"variables": "{\n\t\"id\":2\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "mutation",
+			"item": [
+				{
+					"name": "usuario",
+					"item": [
+						{
+							"name": "crear usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation crearUsuario($usuario: UsuarioInput){\n    crearUsuario(usuario: $usuario){\n        rut\n        dv\n    }\n}",
+										"variables": "{\n\t\"usuario\":{\n\t\t\"rut\": 18825912,\n\t\t\"dv\": \"k\",\n\t\t\"nombre\": \"Rafael\",\n\t\t\"apellido\": \"Ortiz\",\n\t\t\"email\": \"rortiz@previred.com\"\n\t}\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "actualizar usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation actualizarUsuario($rut: ID!, $email: String!){\n    actualizarUsuario(rut: $rut, email: $email){\n        rut\n        nombre\n        email\n    }\n}",
+										"variables": "{\n\t\"rut\": 18825912,\n\t\"email\": \"rortiz@gmail.com\"\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "eliminar usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation eliminarUsuario($rut: ID!){\n    eliminarUsuario(rut: $rut){\n        rut\n        nombre\n        email\n    }\n}",
+										"variables": "{\n\t\"rut\": 18825912\n}"
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add rol",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation addRol($rut: ID!, $idRol: ID!){\n    addRol(rut: $rut, idRol: $idRol){\n        rut\n        nombre\n        roles {\n            id\n            nombre\n        }\n    }\n}",
+										"variables": "{\n\t\"rut\": 18825912,\n\t\"idRol\": 9\n}"
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "rol",
+					"item": [
+						{
+							"name": "crear rol",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n\tcrearRol(nombre: \"test2\"){\n\t\tid\n\t\tnombre\n\t}\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "actualizar rol",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation actualizarRol($rol: RolInput){\n    actualizarRol(rol: $rol){\n        id\n        nombre\n    }\n}",
+										"variables": "{\n\t\"rol\":{\n\t\t\"id\":4,\n\t\t\"nombre\":\"TX\"\n\t}\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "eliminar rol",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation eliminarRol($id: ID!){\n    eliminarRol(id: $id){\n        id\n        nombre\n    }\n}",
+										"variables": "{\n\t\"id\":6\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add Perfil",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation addPerfil($id: ID!, $idPerfil: ID!){\n    addPerfil(id: $id, idPerfil: $idPerfil){\n        nombre\n        perfiles {\n            nombre\n        }\n    }\n}",
+										"variables": "{\n\t\"id\":1,\n\t\"idPerfil\":2\n}"
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "perfil",
+					"item": [
+						{
+							"name": "crear perfil",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n\tcrearPerfil(nombre: \"junior\"){\n\t\tid\n\t\tnombre\n\t}\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "actualizar perfil",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation actualizarPerfil($perfil: PerfilInput){\n    actualizarPerfil(perfil: $perfil){\n        id\n        nombre\n    }\n}",
+										"variables": "{\n\t\"perfil\":{\n\t\t\"id\":2,\n\t\t\"nombre\":\"aaaa\"\n\t}\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "eliminar perfil",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation eliminarPerfil($id: ID!){\n    eliminarPerfil(id: $id){\n        id\n        nombre\n    }\n}",
+										"variables": "{\n\t\"id\":3\n}"
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8080/graphql",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
